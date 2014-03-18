@@ -8,17 +8,18 @@ AFOAuth2Client is an extension for [AFNetworking](http://github.com/AFNetworking
 NSURL *url = [NSURL URLWithString:@"http://example.com/"];
 AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:kClientID secret:kClientSecret];
 
-[oauthClient authenticateUsingOAuthWithPath:@"/oauth/token"
-                                   username:@"username"
-                                   password:@"password"
-                                      scope:@"email"
-                                    success:^(AFOAuthCredential *credential) {
-                                        NSLog(@"I have a token! %@", credential.accessToken);
-                                        [AFOAuthCredential storeCredential:credential withIdentifier:oauthClient.serviceProviderIdentifier];
-                                    }
-                                    failure:^(NSError *error) {
-                                        NSLog(@"Error: %@", error);
-                                    }];
+[oauthClient authenticateUsingOAuthWithURLString:@"/oauth/token"
+                                        username:@"username"
+                                        password:@"password"
+                                           scope:@"email"
+                                         success:^(AFOAuthCredential *credential) {
+                                             NSLog(@"I have a token! %@", credential.accessToken);
+                                             [AFOAuthCredential storeCredential:credential 
+                                                                 withIdentifier:oauthClient.serviceProviderIdentifier];
+                                         }
+                                         failure:^(NSError *error) {
+                                             NSLog(@"Error: %@", error);
+                                         }];
 ```
 
 ## Contact
